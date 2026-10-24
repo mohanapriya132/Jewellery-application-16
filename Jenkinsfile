@@ -16,5 +16,14 @@ pipeline {
                 echo 'Jewellery application code verified successfully!'
             }
         }
+
+        stage('Frontend Build') {
+            steps {
+                dir('Frontend') {
+                    bat 'npm ci'
+                    bat 'npm run build'
+                }
+            }
+        }
     }
 }
