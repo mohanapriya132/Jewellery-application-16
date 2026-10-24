@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/mohanapriya132/jewellery-16.git'
+                    url: 'https://github.com/mohanapriya132/Jewellery-application-16.git'
             }
         }
 
