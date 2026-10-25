@@ -42,6 +42,15 @@ pipeline {
                 }
             }
         }
+        
+stage('Frontend Lint') {
+    steps {
+        dir('Frontend') {
+            bat 'npm run lint'
+        }
+    }
+}
+
     }
 
     post {
