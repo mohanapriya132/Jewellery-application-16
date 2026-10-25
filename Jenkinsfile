@@ -3,7 +3,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
@@ -22,7 +21,6 @@ pipeline {
             steps {
                 bat 'dir Frontend'
                 bat 'dir Backend'
-
                 echo 'Jewellery project verification completed!'
             }
         }
@@ -32,6 +30,15 @@ pipeline {
                 dir('Frontend') {
                     bat 'npm ci'
                     bat 'npm run build'
+                }
+            }
+        }
+
+        stage('Backend Verification') {
+            steps {
+                dir('Backend') {
+                    bat 'npm ci'
+                    bat 'node --check server.js'
                 }
             }
         }
