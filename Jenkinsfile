@@ -3,6 +3,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
@@ -10,10 +11,19 @@ pipeline {
             }
         }
 
-        stage('Verify Code') {
+        stage('Check Environment') {
             steps {
-                bat 'dir'
-                echo 'Jewellery application code verified successfully!'
+                bat 'node --version'
+                bat 'npm --version'
+            }
+        }
+
+        stage('Verify Project') {
+            steps {
+                bat 'dir Frontend'
+                bat 'dir Backend'
+
+                echo 'Jewellery project verification completed!'
             }
         }
 
@@ -24,6 +34,16 @@ pipeline {
                     bat 'npm run build'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Jewellery CI Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Jewellery CI Pipeline failed. Please check the Console Output.'
         }
     }
 }
